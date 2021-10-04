@@ -1,0 +1,53 @@
+{% extends "booky/base.html" %}
+
+{% load static %}
+
+{% block title %}Knihy{% endblock %}
+{% block content %}
+    <h1 class="content-header">Evidencia učebníc</h1>
+    <form id="filter-form" class="justify-left" method="GET">{% csrf_token %}
+        {% for field in myFilter.form %}
+            <p class="form-item">
+                <label>{{ field.label }}</label>
+                {{ field|safe }}
+            </p>
+        {% endfor %}
+        <input class="invis" type="submit" name="Submit" value="Hľadať">
+    </form>
+    <table>
+        <tr class="headers">
+            <th rowspan="2">Názov učebnice</th>
+            <th rowspan="2">Autori</th>
+            <th rowspan="2">Pre ročníky</th>
+            <th colspan="2">Žiaci</th>
+            <th colspan="2">Učiteľia</th>
+            <th rowspan="2">Na sklade</th>
+            <th rowspan="2">Stratené</th>
+            <th rowspan="2">Spolu kníh</th>
+        </tr>
+        <tr class="headers">
+            <th>Vydané</th>
+            <th>Odovzdané</th>
+            <th>Vydané</th>
+            <th>Odovzdané</th>
+        </tr>
+    {% for book in books %}
+        <tr class="{% cycle 'darker' 'lighter' %}">
+            <td class="invis">{{ book.pk }}</td>
+            <td>{{ book.title }} </td>
+            <td>{{ book.authors }}</td>
+            <td>{{ book.gradesStr }} </td>
+            <td>{{ book.given.STUDENTS }}</td>
+            <td>{{ book.returned.STUDENTS }}</td>
+            <td>{{ book.given.TEACHERS }}</td>
+            <td>{{ book.returned.TEACHERS }}</td>
+            <td>{{ book.amountInStock }}</td>
+            <td>{{ book.amountLost }}</td>
+            <td>{{ book.amountInTotal }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'booky/js/ajax_scripts.js' %}"></script>
+{% endblock %}

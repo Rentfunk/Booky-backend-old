@@ -1,0 +1,19 @@
+{% extends "booky/base.html" %}
+
+{% block title %}Evidencia novej objednávky{% endblock %}
+{% block content %}
+
+    <div class="center">
+        <h1 class="sub-content-header">Evidencia novej objednávky</h1>
+        <form class="add-order-form float" method="POST">{% csrf_token %}
+        {% for field in preBookForm %}
+            <p class="form-item">
+                <label class="large-text" for={{ field.name }}>{{ field.label }}: {{ field|safe }}</label>
+            </p>
+        {% endfor %}
+            <br>
+            <input class="btn-style scaled-btn" type="submit" name="continue" value="Pokračovať">
+        </form>
+    </div>
+   
+{% endblock %}

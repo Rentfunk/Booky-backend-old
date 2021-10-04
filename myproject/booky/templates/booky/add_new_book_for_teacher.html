@@ -1,0 +1,21 @@
+{% extends "booky/base.html" %}
+
+{% block title %}Nová kniha pre {{ teacher }}{% endblock %}
+{% block content %}
+
+    <div class="center">
+        <h1 class="sub-content-header">Nová kniha pre {{ teacher }}</h1>
+        <form class="add-teacher-book-form add-form" method="POST" autocomplete="off">{% csrf_token %}
+        {% for field in form %}
+            <p class="form-item">
+                <label class="middle-align" for="{{ field.name }}">{{ field.label }}: </label>
+                {{ field|safe }}
+            </p>
+        {% endfor %}
+            <br>
+            <input class="btn-style scaled-btn" type="submit" name="save" value="Uložiť">
+            <input class="btn-style scaled-btn" type="submit" name="add-new" value="Uložiť a pridať ďalšiu">
+        </form>
+    </div>
+
+{% endblock %}

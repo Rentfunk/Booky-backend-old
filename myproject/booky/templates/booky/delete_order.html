@@ -1,0 +1,32 @@
+{% extends "booky/base.html" %}
+
+{% block title %}Vymazať objednávku{% endblock %}
+
+{% block content %}
+
+    <div class="center">
+        <h1 class="content-header">Vymazať objednávku</h1>
+        <p class="info">Ste si istý, že chcete vymazať túto objednávku?</p>
+        <form class="delete-order-form delete-form" method="POST">{% csrf_token %}
+            <p class="form-item">
+                <label class="middle-align">Kniha: </label>
+                <input type="text" value="{{ orderForm.instance.forBook.title }}" class="input-style">
+            </p>
+            <p class="form-item">
+                <label class="middle-align">Autori: </label>
+                <input type="text" value="{{ orderForm.instance.forBook.authors }}" class="input-style">
+            </p>
+        {% for field in orderForm %}
+            
+            <p class="form-item">
+                <label class="middle-align" for={{ field.name }}>{{ field.label }}: </label>
+                {{ field|safe }}
+            </p>
+
+        {% endfor %}
+            <input class="btn-style scaled-btn" type="submit" name="save" value="Áno">
+            <input class="btn-style scaled-btn" type="submit" name="back" value="Naspäť">
+        </form>
+    </div>
+
+{% endblock %}

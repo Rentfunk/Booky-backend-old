@@ -1,0 +1,20 @@
+{% extends "booky/base.html" %}
+
+{% block title %}Vymazať knihu učiteľa{% endblock %}
+
+{% block content %}
+
+    <div class="center">
+        <h1 class="content-header">Vymazať knihu učiteľa {{ ownedByTeacherBook.teacher }}</h1>
+        <form method="POST">{% csrf_token %}
+            <p class="info">Ste si istý, že chcete vymazať knihu <strong>{{ book }}</strong> učiteľovi <strong>{{ ownedByTeacherBook.teacher }}</strong>?</p>
+            <i class="info-small"> Počet vlastnených kníh: <strong>{{ ownedByTeacherBook.booksOwned }}</strong> <br> Počet odovzdanýh kníh: <strong>{{ ownedByTeacherBook.booksReturned }}</strong></i>
+            <br>
+            <br>
+            <p class="info">Všetky knihy budú zapísané naspäť do skaldu, bez ohľadu na to, či boli vrátené!</p>
+            
+            <input class="btn-style scaled-btn" type="submit" value="Vymazať" name="save">
+            <input class="btn-style scaled-btn" type="submit" value="Naspäť" name="back">
+    </div>
+
+{% endblock %}

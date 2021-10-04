@@ -1,0 +1,29 @@
+{% extends "booky/base.html" %}
+
+{% block title %}Upraviť objednávku{% endblock %}
+
+{% block content %}
+
+    <div class="center">
+        <h1 class="content-header">Upraviť objednávku</h1>
+        <form class="add-order-form add-form form-scaled" method="POST">{% csrf_token %}
+            <p class="form-item">
+                <label class="middle-align">Kniha: </label>
+                <input type=text value="{{ orderForm.instance.forBook.title }}" class="input-style" readonly>
+            </p>
+            <p class="form-item">
+                <label class="middle-align">Autor: </label>
+                <input type="text" value="{{ orderForm.instance.forBook.authors }}" class="input-style" readonly> 
+            </p>
+        {% for field in orderForm %}
+            <p class="form-item">
+                <label class="middle-align" for={{ field.name }}>{{ field.label }}: </label>
+                {{ field|safe }}
+            </p>
+        {% endfor %}
+
+            <input class="btn-style scaled-btn" type="submit" name="save" value="Uložiť">
+        </form>
+    </div>
+
+{% endblock %}

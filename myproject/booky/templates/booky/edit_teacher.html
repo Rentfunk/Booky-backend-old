@@ -1,0 +1,33 @@
+{% extends "booky/base.html" %}
+
+{% block title %}Edituj učiteľa {{ teacher }}{% endblock %}
+{% block content %}
+
+    <div class="center">
+        <h1 class="sub-content-header">Edituj učiteľa {{ teacher }}</h1>
+        <form class="edit-form" method="POST">{% csrf_token %}
+            <table>
+            {% for form in formset %}
+                <tr>
+                    <td><strong class="large-text">{{ form.instance.book.title }}</strong></td>
+                    <td>
+                    {% for field in form %}
+                        <p class="form-item"><label class="middle-align" style="width: 130px;">{{ field.label }}: </label> {{ field|safe }}</p>
+                    {% endfor %}
+                    </td>
+                    <td class="remove-book"><a href={% url 'delete-teacher-book' pk=form.instance.pk %}><i class="fas fa-times"></i></a></td>
+                </tr>
+            {% endfor %}
+            </table>
+                
+            {{ formset.management_form }}
+            <br>
+            
+            <input class="btn-style scaled-btn" type="submit" name="Submit" value="Uložiť">
+            {% if newBooks != 0 %}
+                <a class="clear-link btn-style scaled-btn" href="{% url 'add-new-book-for-teacher' pk=pk %}">Pridajte novú knihu</a>
+            {% endif %}
+        </form>
+    </div>
+
+{% endblock %}

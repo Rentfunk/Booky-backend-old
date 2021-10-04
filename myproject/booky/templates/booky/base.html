@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="sk">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="description" content="Web application for dealing with school books stock.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://kit.fontawesome.com/4805ff016f.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'booky/css/main.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'booky/css/tables_forms.css' %}">
+    <body>
+        <nav>
+            <div class="nav-logo">
+                <div class="logo" style="font-size: 1.4em; text-align:center; color: white;">Place for logo here</div>
+            </div>
+            <div class="nav-content">
+                <ul>
+                    <li><a href="{% url 'index' %}">Domov</a></li>
+                    <li><a href="{% url 'books-list' %}">Knihy</a></li>
+                    <li><a href="{% url 'orders-list' %}">Objednávky</a></li>
+                    <li><a href="{% url 'teachers-list' %}">Učitelia</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Triedy</a>
+                        <div class="dropdown-content">
+                        {% for grade in grades %}
+                            <a href="{% url 'classroom-list' pk=grade.pk %}" class="dropdown-item">{{ grade.name }}. ročník</a>
+                        {% endfor %}
+                        </div>
+                    </li>
+                </ul>
+            </div>             
+            <div class="user-info">
+                <p>Ahoj $User</p>
+                <a href="#">Nastavenia</a>
+            </div>
+        </nav>
+        <div id="main-wrapper" class="">
+            {% block content %}{% endblock %}
+        </div>
+        <footer>
+            <div class="footer-contanct">
+                <p>Kontaktujte nás: </p> 
+                <ul>
+                    <li><i class="fab fa-instagram"></i> Fcebook</li>
+                    <li><i class="fab fa-facebook"></i> Instagram</li>
+                    <li><i class="fas fa-home"></i> Homepage</li>
+                </ul>
+            </div>
+            <div class="footer-faq">
+                FAQ: 
+                <ul>
+                    <li><i>Otázka 1</i></li>
+                    <li><i>Otázka 2</i></li>
+                    <li><i>Otázka 3</i></li>
+                </ul>
+            </div>
+            <div class="footer-about">Stránka vytvorená spoločnosťou Web/div</div>
+        </footer>
+        <script type="text/javascript" src="{% static 'booky/js/main_scripts.js' %}"></script>
+        {% block scripts %}{% endblock %}
+    </body>
+</html>

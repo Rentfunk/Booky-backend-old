@@ -1,0 +1,19 @@
+{% extends "booky/base.html" %}
+
+{% block title %}Nový učiteľ{% endblock %}
+{% block content %}
+   
+    <div class="center">
+        <h1 class="sub-content-header">Nový učiteľ</h1>
+        <form class="add-teacher-form add-form" method="POST">{% csrf_token %}
+        {% for field in teacherForm %}
+            <p class="form-item" style="margin: 20px 0;">
+                <label class="middle-align" for={{ field.name }}>{{ field.label }}:</label>
+                {{ field|safe }}
+            </p>        
+        {% endfor %}
+            <input class="btn-style scaled-btn" type="submit"  name="Save" value="Uložiť">
+        </form>
+    </div>
+
+{% endblock %}

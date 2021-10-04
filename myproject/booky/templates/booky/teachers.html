@@ -1,0 +1,34 @@
+{% extends "booky/base.html" %}
+
+{% block title %}Učitelia{% endblock %}
+{% block content %}
+
+    <div class="center">
+        <h1 class="content-header">Evidencia kníh učiteľov</h1>
+        <table id="teachers-table">
+            <tr class="headers">
+                <th>Meno učiteľa</th>
+                <th>Názov knihy</th>
+                <th>Vlastní</th>
+                <th>Vrátil</th>
+            </tr>
+            {% for teacher in teachers %}
+                <tr class="content-special {% cycle 'lighter' 'darker'  %}">
+                    {% url 'edit-teacher' pk=teacher.pk as editTeacherUrl %}
+                    <td rowspan="{{ teacher.books.count|add:"+1" }}" onclick="location.href='{{ editTeacherUrl }}'"><a class="clear-link" href="{{ editTeacherUrl }}">{{ teacher.name }}</a></td>
+                </tr>
+                {% for book in teacher.bookInfo.all %}
+                <tr class="teachers-content">
+                    
+                    <td>{{ book.book.title }}</td>
+                    <td>{{ book.booksOwned }}</td>
+                    <td>{{ book.booksReturned }}</td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </table>
+        <a class="btn-style clear-link justify-left" href="{% url 'add-teacher' %}">Pridať nového učiteľa</a>
+        <br>
+    </div>
+
+{% endblock %}

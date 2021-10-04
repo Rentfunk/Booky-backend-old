@@ -1,0 +1,471 @@
+
+
+/* -------------- PAGE HEADERS -------------- */
+
+
+h1.content-header {
+    font-size: 3.4em;
+    margin: 20px 0;
+    position: relative;
+    text-align: center;
+}
+
+h1.sub-content-header {
+    font-size: 2.9em;
+    margin: 20px 0;
+    position: relative;
+}
+
+
+/* -------------- TABLES -------------- */
+
+
+tr, td, th {
+    border: 0.1px solid black;
+}
+
+td, th {
+    padding: 5px;
+}
+
+table {
+    border: 1px solid black;
+    border-spacing: 0;
+    margin: 20px 0;
+    width: 100%;
+}
+
+tr.headers {
+    background-color: var(--table-header-red);
+}
+
+tr.lighter td {
+    background-color: var(--table-bg-2);
+    transition: all 0.2s ease-out;
+}
+
+tr.darker td {
+    background-color: var(--table-bg-1);
+    transition: all 0.1s ease-out;
+}
+
+tr.content-special td:hover {
+    background-color: var(--dark-header);
+    transition: all 0.1s ease-in;
+}
+
+tr.content-special td:hover a {
+    color: var(--white-bg);
+    transition: all 0.1s ease-in;
+}
+
+tr.content-special td:first-child {
+    padding: 0;
+}
+
+tr.content-special td:first-child a {
+    display: block;
+    height: 100%;
+    padding: 5px;
+    width: 100%;
+}
+
+
+/* orders table */
+
+
+td.order-edit-btns a {
+    margin: 0 3px;
+    text-align: center;
+}
+
+
+/* classrooms table */
+
+
+table#classrooms-table {
+    width: 65%;
+}
+
+tr.classroom-links td {
+    padding: 0;
+}
+
+a.grades-btn {
+    display: block;
+    width: 100%;
+    background-color: var(--dark-header);
+    color: var(--white-bg);
+    font-size: 1.1em;
+    padding: 5px 0;
+    text-align: center;
+    transition: all 0.2s ease-out;
+}
+
+a.grades-btn:hover {
+    background-color: var(--white-bg);
+    color: var(--dark-header);
+    transition: all 0.1s ease-in;
+}
+
+
+/* teachers table */
+
+
+table#teachers-table {
+    width: 60%;
+}
+
+table#teachers-table ~ a {
+    margin-left: 20%;
+}
+
+tr.wo-top td {
+    border-top-color: transparent;
+}
+
+tr.wo-bottom td {
+    border-bottom-color: transparent;
+}
+
+tr.wo-both td {
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+}
+
+tr.content-special td {
+    cursor: pointer;
+}
+
+
+/* -------------- FORMS -------------- */
+
+
+/* general form styles */
+
+
+.input-style {
+    background-color: var(--dark-header);
+    border: 0px solid transparent;
+    border-radius: 7.25px;
+    color: var(--white-bg);
+    font-size: 115%;
+    height: 26.1px;
+    width: 290px;
+    padding: 0 5px;
+}
+
+
+.input-style:focus {
+    outline: none;
+}
+
+p.form-item {
+    display: flex;
+    margin-top: 5px;
+}
+
+ul.input-style-rb {
+    width: 250px !important;
+}
+
+select.input-style {
+    width: 293px;
+}
+
+
+/* edit-form styles */
+
+
+form.edit-form table, form.edit-form tr, form.edit-form td {
+    border-color: transparent;
+    border-top-color: var(--darlk-header);
+    border-bottom-color: var(--dark-header);
+}
+
+form.edit-form table tr td:nth-of-type(1) {
+    width: 50%;
+}
+
+form.edit-form .input-style {
+    width: 230px;
+}
+
+tr.remove-book {
+    text-align: top;
+}
+
+
+/* add-order-form-styles */
+
+
+form.add-order-form.float p:nth-of-type(1) {
+    float: left;
+}
+
+form.add-order-form.no-float p:nth-of-type(1) {
+    float: none;
+}
+
+form.add-order-form ul li label {
+    font-size: 145%;
+}
+
+
+/* add-order-form checkboxes/radio buttons styling */
+
+
+ul[id=id_typeOfOrder] {
+    display: -webkit-box;
+    padding-left: 10px;
+}
+
+ul[id=id_typeOfOrder] li {
+    margin-top: 5px;
+    padding: 0 5px;
+}
+
+ul[id=id_forGrades] li {
+    display: inline;
+    padding: 0 5.5px;
+}
+
+input[name=forGrades] {
+    appearance: none;
+    background-color: var(--white-bg);
+    border-radius: 2px;
+    border: medium solid var(--dark-header);
+    height: 18.85px;
+    position: relative;
+    top: 4.5px;
+    width: 18.85px;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+input[name=forGrades]:checked, input[name=forGrade]:checked:active {
+    background-color: var(--dark-header);
+    transition: all 0.2s ease-out;
+}
+
+input[name=forGrades]:focus {
+    outline: none;
+}
+
+input[name=typeOfOrder] {
+    appearance: none;
+
+}
+
+label[for^=id_typeOfOrder_] {
+    position: relative;
+    top: -4px;
+}
+
+label[for^=id_typeOfOrder_]:before {
+    content: "";
+    display: inline-block;
+    width: 18.85px;
+    height: 18.85px;
+    border: medium solid var(--dark-header);
+    border-radius: 50%;
+    position: relative;
+    top: 4px;
+    background-color: var(--white-bg);
+    transition: all 0.2s ease-out;
+}
+
+label.checked:before {
+    content: "";
+    display: inline-block;
+    width: 18.85px;
+    height: 18.85px;
+    border: medium solid var(--dark-header);
+    border-radius: 50%;
+    position: relative;
+    top: 4px;
+    background-color: var(--dark-header);
+    transition: all 0.2s ease-out;
+}
+
+
+/* select inputs ---> text inputs with dropdown */
+
+
+div.select-div {
+    position: relative;
+}
+
+div.select-ac-div {
+    position: absolute;
+    background-color: var(--dark-header);
+    top: 26px;
+    width: 100%;
+    max-height: 125px;
+    overflow: scroll;
+    display: none;
+}
+
+div.select-ac-div ul {
+    padding-top: 0;
+}
+
+li.ac-item {
+    padding: 10px;
+    color: var(--white-bg);
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+li.ac-item:hover {
+    background-color: rgba(230, 240, 231, 0.3);
+    transition: all 0.1s ease-in;
+}
+
+.input-style.select-input:focus, div.select-ac-div:hover {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-style.select-input:focus ~ div.select-ac-div, div.select-ac-div:hover {
+    display: block;
+}
+
+
+/* middle-align styles */
+
+
+label.middle-align {
+    display: inline-block;
+    font-size: 145%;
+    text-align: right;
+    margin-right: 5px;
+}
+
+form.order-filter-form p label.middle-align {
+    width: 265px;
+}
+
+form.add-order-form p label.middle-align, form.delete-order-form p label.middle-align {
+    width: 224.75px;
+}
+
+form.add-teacher-book-form p label.middle-align {
+    width: 130.5px;
+}
+
+form.add-teacher-form p label.middle-align {
+    width: 159.5px;
+}
+
+form.add-grade-book-form p label.middle-align {
+    width: 149px;
+}
+
+form.edit-form p label.middle-align {
+    width: 130px;
+}
+
+
+/* delete-form styles */
+
+
+form.delete-form p input {
+    pointer-events: none;
+}
+
+
+
+/* -------------- UTILITY -------------- */
+
+
+.btn-style {
+    border-radius: 4px;
+    background-color: var(--dark-header);
+    border: 3px transparent solid;
+    color: var(--white-bg) !important;
+    cursor: pointer;
+    font-size: 14px;
+    margin: 5px 3px;
+    padding: 2px 5px;
+    transition: all 0.2s ease-out;
+}
+
+.btn-style:hover {
+    background-color: var(--white-bg);
+    border-color: var(--dark-header);
+    border-width: 3px;
+    color: black !important;
+    font-weight: 100;
+    transition: all 0.1s ease-in;
+}
+
+.scaled-btn {
+    border-radius: 5.8px;
+    font-size: 125%;
+    margin: 7.25px 4.35px;
+    padding: 2.9px 7.25px;
+}
+
+.invis {
+    display: none;
+}
+
+.center {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.justify-left {
+    margin-right: auto;
+}
+
+.clear-link {
+    color: black;
+    text-decoration: none;
+}
+
+.info {
+    font-size: 20px;
+}
+
+.info-small {
+    font-size: 15px;
+}
+
+.float-left {
+    float: left;
+    margin-right: 0 !important;
+    position: relative;
+}
+
+.float-right {
+    float: right;
+    position: relative;
+}
+
+.no-align {
+    display: block !important;
+    text-align: left !important;
+}
+.large-text {
+    font-size: 145%;
+}
+
+.table-cell-link {
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+.list-style-none {
+    list-style-type: none;
+}
+
+/* -------------- FONT AWESOME -------------- */
+
+i.fa-edit, i.fa-times {
+    font-size: 18px;
+}

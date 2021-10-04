@@ -1,0 +1,45 @@
+{% extends "booky/base.html" %}
+
+{% block title %}{{ grade.name }}{% endblock %}
+{% block content %}
+
+    <div class="center">
+        <h1 class="content-header">Knihy pre {{ grade.name }}. ročník</h1>        
+        <table id="classrooms-table">
+            <!--Table headers-->
+            <tr class="headers">
+                <th rowspan=2>Názov učebnice</th>
+            {% for classroom in classrooms %}
+                <th colspan=2>{{ classroom.name }}</th>
+            {% endfor %}
+            </tr>
+            <tr class="headers">
+            {% for classroom in classrooms %}
+                <th>Vydané knihy</th>
+                <th>Odovzdané knihy</th>
+            {% endfor %}
+            </tr>
+
+            <!-- Book data -->
+        {% for book, bookInfo in classroomInfo.items %}
+            <tr class="{% cycle 'darker' 'lighter' %}">
+                <td>{{ book.title  }}</td>
+            {% for info in bookInfo %}
+                <td>{{ info.booksOwned }}</td>
+                <td>{{ info.booksReturned }}</td>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+            
+            <!-- Links to classrooms -->
+            <tr class="classroom-links">
+                <td><a class="grades-btn clear-link" href="{% url 'add-new-book-for-grade' pk=grade.pk %}">Pridaj knihu</a></td>
+            {% for classroom in classrooms %}
+                <td colspan=2><a class="grades-btn clear-link" href="{% url 'edit-class' pk=classroom.pk %}">Upraviť</a></td>
+            {% endfor %}
+            </tr>
+        </table>
+        <br>
+    </div>
+
+{% endblock %}

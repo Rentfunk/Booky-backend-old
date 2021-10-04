@@ -1,0 +1,59 @@
+{% extends "booky/base.html" %}
+
+{% load static %}
+
+{% block title %}Objednávky{% endblock %}
+{% block content %}
+    <div>
+        <h1 class="content-header">Evidencia objednávok</h1>
+        <a id="filter-show" class="clear-link btn-style justify-left float-left" href="#">Zobraziť filter objednávok</a>
+        <form id="filter-form" class="order-filter-form invis justify-left" method="GET">{% csrf_token %}
+            {% for field in myFilter.form %}
+                <p class="form-item"> 
+                    <label class="middle-align">{{ field.label }}: </label>
+                    {{ field|safe }}<br>
+                </p>
+
+            {% endfor %}
+            <input class="invis" type="submit" name="Submit" value="Hľadať">
+        </form>
+        <a class="btn-style clear-link justify-left" href="{% url 'add-order-step-0' %}">Nová objednávka</a>
+        <table>
+            <tr class="headers">
+                <th>Ročníky</th>
+                <th>Názov učebnice</th>
+                <th>Autori</th>
+                <th>Kód</th>
+                <th>ISBN</th>
+                <th>Rok vydania</th>
+                <th>Evidenčné číslo</th>
+                <th>Fakturačné číslo</th>
+                <th>Počet kusov</th>
+                <th>Cena za kus</th>
+                <th></th>
+            </tr>
+        {% for order in orders %}
+            <tr class="{% cycle 'darker' 'lighter' %}">
+                <td class="invis">{{ order.pk }}</td>
+                <td>{{ order.forBook.gradesStr }}</td>
+                <td>{{ order.forBook.title }}</td>
+                <td>{{ order.forBook.authors }}</td>
+                <td>{{ order.code }}</td>
+                <td>{{ order.isbn }}</td>
+                <td>{{ order.publicationYear }}</td>
+                <td>{{ order.registryNumber }}</td>
+                <td>{{ order.billingNumber }}</td>
+                <td>{{ order.amountOrdered }}</td>
+                <td>{{ order.pricePerBook }}</td>
+                <td class="order-edit-btns">
+                    <a href="{% url 'edit-order' pk=order.pk %}"><i class="fas fa-edit"></i></a>
+                    <a href="{% url 'delete-order' pk=order.pk %}"><i class="fas fa-times"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'booky/js/ajax_scripts.js' %}"></script>
+{% endblock %}
