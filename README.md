@@ -3,6 +3,7 @@ Booky is a web application for schools trying to manage their books.
 
 The application does not support multiple schools, each school needs it's own installation of this app.
 
+Development of this project is discontinued. Newer version is being developed at https://github.com/Rentfunk/Booky-api and https://github.com/Rentfunk/Booky-frontend.
 
 # Developer setup
 
